@@ -93,7 +93,7 @@ const MMenu: React.FC<IProps> = ({ history, location }) => {
   return (
     <div className={styles.menu}>
       <div className={styles.menuHeader}>
-        <div className={styles.title}>FRONTEND</div>
+        <div className={styles.title}>QIANKUN</div>
       </div>
       <div className={styles.menuContainer}>
         <MScrollbar>
