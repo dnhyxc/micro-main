@@ -1,11 +1,13 @@
-import React from "react";
-import { Route, Switch, routerRedux, Redirect } from "dva/router";
-import Login from "@/routes/login";
-import App from "./routes/app";
+import React from 'react';
+import {
+  Route, Switch, routerRedux, Redirect,
+} from 'dva/router';
+import Login from '@/routes/login';
+import App from './routes/app';
 
 const { ConnectedRouter } = routerRedux;
 
-let cookie = "";
+const cookie = '';
 
 const RouterConfig = ({ history }: any) => {
   if (!cookie) {
