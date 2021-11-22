@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import { withRouter } from 'dva/router';
-import { Spin } from 'antd';
+import React, { useState } from "react";
+import { withRouter } from "dva/router";
+import { Spin } from "antd";
 import {
   registerMicroApps,
   start,
   setDefaultMountApp,
   runAfterFirstMounted,
   addGlobalUncaughtErrorHandler,
-} from 'qiankun';
-import { apps, AppsParams } from '@/microConfig';
-import MainLayout from './layout';
+} from "qiankun";
+import { actions } from "@/microActions";
+import { apps, AppsParams } from "@/microConfig";
+import MainLayout from "./layout";
 
-import styles from './app.less';
+import styles from "./app.less";
 
 const App: React.FC<any> = ({ children, location }): any => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -22,6 +23,7 @@ const App: React.FC<any> = ({ children, location }): any => {
     setLoading(load);
   };
 
+  // 向apps路由配置中动态添加参数
   const newApps = apps.map((i) => {
     // 为props增加参数
     i.props = {
@@ -35,9 +37,10 @@ const App: React.FC<any> = ({ children, location }): any => {
     };
   });
 
+  // 注册子应用
   registerMicroApps(newApps as AppsParams[], {
     beforeLoad: (app): any => {
-      console.log('before load app.name=====>>>>>', app.name);
+      console.log("before load app.name=====>>>>>", app.name);
     },
     beforeMount: (app): any => {
       // console.log('[LifeCycle] before mount %c%s', 'color: green;', app.name);
@@ -51,6 +54,7 @@ const App: React.FC<any> = ({ children, location }): any => {
     },
   });
 
+  // 启动应用
   start({
     // prefetch: true, // 开启预加载
     // sandbox: {
@@ -58,16 +62,23 @@ const App: React.FC<any> = ({ children, location }): any => {
     // },
   });
 
+  // 监听状态变更
+  actions.onGlobalStateChange((state, prev) => {
+    // state: 变更后的状态; prev 变更前的状态
+    console.log("变更前的状态：", prev);
+    console.log("变更后的状态：", state);
+  });
+
   // 设置主应用启动后默认进入的微应用（reactApp）
-  setDefaultMountApp('/dnhyxc/react');
+  setDefaultMountApp("/dnhyxc/react");
 
   runAfterFirstMounted(() => {
-    console.log('[MainApp] first app mounted');
+    console.log("[MainApp] first app mounted");
   });
 
   // 添加全局异常捕获
   addGlobalUncaughtErrorHandler((handler) => {
-    console.log('异常捕获', handler);
+    console.log("异常捕获", handler);
   });
 
   return (
