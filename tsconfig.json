@@ -64,6 +64,5 @@
     "build",
     "vendor",
     "**/*/_*",
-    "src/components/VideoClipper"
   ]
 }
