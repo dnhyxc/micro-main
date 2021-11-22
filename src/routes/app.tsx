@@ -14,7 +14,7 @@ import MainLayout from './layout';
 
 import styles from './app.less';
 
-const App: React.FC<any> = ({ children, location }): any => {
+const App: React.FC<any> = ({ children, location, history }): any => {
   const [loading, setLoading] = useState<boolean>(false);
 
   // 设置首次加载loading效果

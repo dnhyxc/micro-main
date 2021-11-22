@@ -4,7 +4,7 @@ import MMenu from '@/components/Menu';
 
 import styles from './index.less';
 
-const { Sider, Content } = Layout;
+const { Sider } = Layout;
 
 interface ILayoutProps {
   children: ReactNode;
@@ -20,11 +20,9 @@ const MainLayout: React.FC<ILayoutProps> = ({ children }) => {
       >
         <MMenu />
       </Sider>
-      <Layout className={styles.layoutContent}>
-        <Content className={styles.content}>
-          {children}
-        </Content>
-      </Layout>
+      <Layout.Content className={styles.content}>
+        {children}
+      </Layout.Content>
     </Layout>
   );
 };
