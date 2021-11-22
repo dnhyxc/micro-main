@@ -1,17 +1,22 @@
 import React, { PureComponent } from 'react';
 import styles from './index.less';
 
-class Detail extends PureComponent {
-  constructor(props: any) {
+interface IProps {}
+interface ISelfProps {
+  name: string;
+}
+
+class Login extends PureComponent<IProps, ISelfProps> {
+  constructor(props: IProps | ISelfProps) {
     super(props);
-    this.state = 'Login...';
+    this.state = {
+      name: 'Login...',
+    };
   }
 
   render() {
-    return (
-      <div className={styles.wrap}>{this.state}</div>
-    );
+    return <div className={styles.wrap}>{this.state.name}</div>;
   }
 }
 
-export default Detail;
+export default Login;

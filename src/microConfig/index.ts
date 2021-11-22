@@ -1,13 +1,17 @@
+interface Props extends Record<string, any> {
+  info?: string;
+  routerBase: string;
+}
+
 export interface AppsParams {
   name: string;
   entry: string;
   container: string;
   activeRule: string;
-  props: {
-    info: string;
-    routerBase: string;
-  };
+  props: Props;
+  loader?: (loading: boolean) => void;
 }
+
 export const apps: AppsParams[] = [
   {
     name: 'reactApp',
