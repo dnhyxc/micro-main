@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import { withRouter } from "dva/router";
-import { Spin } from "antd";
+import React, { useState } from 'react';
+import { withRouter } from 'dva/router';
+import { Spin } from 'antd';
 import {
   registerMicroApps,
   start,
   // setDefaultMountApp,
   runAfterFirstMounted,
-} from "qiankun";
-import MainLayout from "./layout";
-import Login from "@/routes/login";
-import { apps, AppsParams } from "@/microConfig";
+} from 'qiankun';
+import Login from '@/routes/login';
+import { apps, AppsParams } from '@/microConfig';
+import MainLayout from './layout';
 
-import styles from "./app.less";
+import styles from './app.less';
 
 const App: React.FC<any> = ({ children, location }): any => {
   const [loading, setLoading] = useState<boolean>(true);
 
   registerMicroApps(apps as AppsParams[], {
     beforeLoad: (app): any => {
-      console.log("before load app.name=====>>>>>", app.name);
+      console.log('before load app.name=====>>>>>', app.name);
     },
     beforeMount: (app): any => {
       // console.log('[LifeCycle] before mount %c%s', 'color: green;', app.name);
@@ -35,10 +35,10 @@ const App: React.FC<any> = ({ children, location }): any => {
   start();
 
   runAfterFirstMounted(() => {
-    console.log("[MainApp] first app mounted");
+    console.log('[MainApp] first app mounted');
   });
 
-  if (location.pathname.includes("login")) {
+  if (location.pathname.includes('login')) {
     return (
       <div>
         <Login />
